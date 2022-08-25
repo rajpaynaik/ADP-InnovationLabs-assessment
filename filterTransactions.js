@@ -1,5 +1,6 @@
 const request = require('request')
 const axios = require('axios')
+const fetch = require('node-fetch')
 
 const urlEndpoint = {
   GET: 'get-task',
@@ -71,8 +72,18 @@ const getLastYearTransactionIdsByAlpha = (transactions) =>
 
 const filterTransactionsWithPostRequest = async () => {
   try {
-    const { data } = await axios.get(getURL('GET'))
+    // const { data } = await axios.get(getURL('GET'))
 
+    const data = await fetch(getURL('GET'), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors',
+      cache: 'default',
+    }).then((response) => response.json())
+
+    // console.log(data)
     let lastYearTopEarnerDetails = getLastYearsTopEarnersTransactionDetails(
       data.transactions,
     )
@@ -91,9 +102,18 @@ const filterTransactionsWithPostRequest = async () => {
       "Transaction id's where type is alpha:\n",
       getLastYearTransactionIdsByAlpha(lastYearTopEarnerDetails),
     )
-    const result = await axios.post(getURL('POST'), payload)
+    // const result = await axios.post(getURL('POST'), payload)
 
-    return `test was successfully completed. status:${result.status}`
+    const response = await fetch(getURL('POST'), {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      mode: 'CORS',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    return `test was successfully completed. status:${response.status}`
   } catch (e) {
     return `Error found: ${e}`
   }
