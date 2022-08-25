@@ -89,8 +89,8 @@ const filterTransactionsWithPostRequest = async () => {
     )
 
     console.log(
-      "last year's Top Earners transaction details:\n",
-      lastYearTopEarnerDetails,
+      "\n\nQ1. last year's Top Earners transaction details:\n\n",
+      JSON.stringify(lastYearTopEarnerDetails),
     )
 
     const payload = {
@@ -99,7 +99,7 @@ const filterTransactionsWithPostRequest = async () => {
     }
 
     console.log(
-      "Transaction id's where type is alpha:\n",
+      "\n\nQ2.1 Transaction id's where type is alpha:\n\n",
       getLastYearTransactionIdsByAlpha(lastYearTopEarnerDetails),
     )
     // const result = await axios.post(getURL('POST'), payload)
