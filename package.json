@@ -1,0 +1,17 @@
+{
+  "name": "adp-innovation-labs-assessment",
+  "version": "1.0.0",
+  "description": "assessment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Raj Paynaik",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "fs": "^0.0.1-security",
+    "request": "^2.88.2"
+  }
+}
